@@ -1,0 +1,6 @@
+<form #addForm="ngForm">
+  <div class="add-todo">
+    <button [disabled]="!addForm.form.valid" (click)="addTodo(newText);"><clr-icon shape="plus-circle"></clr-icon></button>
+    <input [(ngModel)]="newText" required name="newTextInput" type="text" placeholder="할 일 추가">
+  </div>
+</form>

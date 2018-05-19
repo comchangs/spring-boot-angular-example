@@ -1,0 +1,9 @@
+<div class="title-box">
+  <h1>나의 하루 ({{ leftCount() }})</h1>
+  <h2>{{ today | date: 'MM월 dd일' }}</h2>
+</div>
+<div class="todo-container">
+  <todo-todo *ngFor="let todo of todos" [todo]="todo">
+  </todo-todo>
+</div>
+<todo-add-todo (newTodo)="addTodo($event)"></todo-add-todo>
