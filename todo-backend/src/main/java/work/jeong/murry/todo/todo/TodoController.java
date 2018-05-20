@@ -1,27 +1,31 @@
 package work.jeong.murry.todo.todo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping({"/api/todos"})
 public class TodoController {
 
   @Autowired
   protected TodoService todoService;
 
-  @RequestMapping(value = "/api/todos", method = RequestMethod.GET)
-  public List<Optional<Todo>> getTodos() {
+  @GetMapping(value = "")
+  public List<Todo> getTodos() {
     return todoService.getTodos();
   }
 
-  @RequestMapping(value = "/api/todos", method = RequestMethod.POST)
-  public boolean addTodo() {
-    return todoService.addTodo("");
+  @GetMapping(value = "/{id}")
+  public Optional<Todo> getTodo(@PathVariable("id") long id) {
+    return todoService.getTodoById(id);
+  }
+
+  @PostMapping(value = "")
+  public List<Todo> addTodo(@RequestBody String text) {
+    return todoService.addTodo(text);
   }
 
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,12 +14,18 @@ public class TodoService {
   @Autowired
   private TodoRepository todoRepository;
 
-  public List<Optional<Todo>> getTodos() {
-    return Collections.emptyList();
+  public List<Todo> getTodos() {
+    return todoRepository.findAll();
   }
 
-  public boolean addTodo(String text) {
-    return true;
+  public Optional<Todo> getTodoById(long id) {
+    return todoRepository.findById(id);
+  }
+
+  public List<Todo> addTodo(String text) {
+    Todo todo = new Todo(false, text);
+    todoRepository.save(todo);
+    return todoRepository.findAll();
   }
 
 }

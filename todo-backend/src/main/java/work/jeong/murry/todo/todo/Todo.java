@@ -7,14 +7,15 @@ public class Todo {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private final long id;
+  private long id;
 
-  private final boolean done;
+  private boolean done;
 
-  private final String text;
+  private String text;
 
-  public Todo(long id, boolean done, String text) {
-    this.id = id;
+  public Todo() {}
+
+  public Todo(boolean done, String text) {
     this.done = done;
     this.text = text;
   }
